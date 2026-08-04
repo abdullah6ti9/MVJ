@@ -83,7 +83,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialNot
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl font-medium tracking-tight text-white">
-            Let's Build Together
+            Contact MJV Construction | Custom Builders Portland, OR
           </h1>
           <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto font-sans">
             Whether you have completed architectural blueprints or just an early vision, our principal builders are ready to listen.

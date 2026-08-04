@@ -17,7 +17,9 @@ import {
   Star,
   Phone,
   Play,
-  X
+  X,
+  ChevronDown,
+  HelpCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -38,6 +40,30 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const FAQS = [
+    {
+      q: 'What geographic areas in Oregon does MJV Construction serve?',
+      a: 'MJV Construction primarily serves the greater Portland metropolitan area, including West Linn, Lake Oswego, Dunthorpe, Beaverton, Hillsboro, Happy Valley, and Southwest Portland.',
+    },
+    {
+      q: 'How long does a custom home build take in Portland, OR?',
+      a: 'Most custom home builds take between 10 to 18 months from ground-breaking to final walkthrough, depending on architectural complexity, site preparation, and municipal permitting schedules.',
+    },
+    {
+      q: 'Do you manage zoning, architectural design, and city permitting?',
+      a: 'Yes. As a full-service architectural general contractor, we manage the entire lifecycle including land evaluation, architectural design coordination, engineering, city permitting, and construction.',
+    },
+    {
+      q: 'What is open-book pricing and how does it protect my budget?',
+      a: 'Open-book pricing means complete financial transparency. You see every subcontractor bid, material invoice, and labor estimate with zero hidden markups. We guarantee budget caps before breaking ground.',
+    },
+    {
+      q: 'Can I visit current or completed MJV Construction sites in Portland?',
+      a: 'Absolutely. We regularly arrange private walkthroughs of completed custom residences in Lake Oswego, West Linn, and Portland so prospective clients can inspect our framing, joinery, and finish quality firsthand.',
+    },
+  ];
 
   useEffect(() => {
     if (isPaused) return;
@@ -647,6 +673,75 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6.5: FREQUENTLY ASKED QUESTIONS (FAQ - SEO & AI SEARCH ACCORDION) */}
+      <section className="py-24 lg:py-32 bg-[#F3EFE9] border-t border-[#E8E2D9]" id="faq-section">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center space-y-3">
+            <span className="text-[11px] uppercase tracking-[0.12em] text-[#B87333] font-semibold block">
+              PORTLAND HOME BUILDING FAQ
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#1A1A1A]">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm text-[#5C5C5C] max-w-xl mx-auto">
+              Everything you need to know about building custom residences, managing budgets, and architectural timelines in Oregon.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {FAQS.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-[4px] border border-[#E8E2D9] overflow-hidden transition-all duration-200"
+                >
+                  <button
+                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between space-x-4 cursor-pointer focus:outline-none"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-serif text-lg text-[#1A1A1A] font-medium pr-2">
+                      {faq.q}
+                    </span>
+                    <span className={`p-1.5 rounded-full bg-[#F3EFE9] text-[#B87333] transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-[#B87333] text-white' : ''}`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </span>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                      >
+                        <div className="px-5 pb-6 sm:px-6 text-sm text-[#5C5C5C] leading-relaxed border-t border-[#F3EFE9] pt-4 font-sans">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center pt-4">
+            <p className="text-xs text-[#5C5C5C]">
+              Have a specific question about your plot or custom architectural blueprints?{' '}
+              <button
+                onClick={() => onOpenConsultationModal('FAQ inquiry about architectural project')}
+                className="text-[#B87333] font-semibold underline hover:text-[#9A5F2A] cursor-pointer"
+              >
+                Ask our Senior Project Engineers →
+              </button>
+            </p>
           </div>
         </div>
       </section>

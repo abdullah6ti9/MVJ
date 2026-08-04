@@ -48,7 +48,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl font-medium tracking-tight text-white">
-            Our Services
+            Custom Home Building & Remodeling Services in Portland, OR
           </h1>
           <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto font-sans">
             Comprehensive construction solutions tailored to your unique architectural vision and lifestyle standards.

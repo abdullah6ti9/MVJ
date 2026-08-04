@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageId, Project } from './types';
+import { SEOHead } from './components/SEOHead';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -39,6 +40,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans flex flex-col justify-between">
+      {/* Dynamic SEO Head Management */}
+      <SEOHead activePage={activePage} />
+
       {/* Sticky Top Header Navigation */}
       <Navbar
         activePage={activePage}

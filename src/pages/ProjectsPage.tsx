@@ -54,7 +54,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl font-medium tracking-tight text-white">
-            Our Portfolio
+            Custom Home Portfolio & Remodeling Showcase | Portland, OR
           </h1>
           <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto font-sans">
             Every project tells a story of architectural collaboration, technical craftsmanship, and unyielding commitment to quality.
